@@ -10,10 +10,13 @@ services:
         depends_on:
             - testsocket
 
-    # aoetechsocket:
-    #     image: itsatreee:aoetech
-    #     ports:
-    #         - "8443:8443"
+    aoetechsocket:
+        image: aoe-websockets:latest
+        volumes: 
+            - /etc/letsencrypt:/etc/letsencrypt
+        ports:
+            - "8443:8443"
+
     testsocket:
         image: aoe-websockets:latest
         volumes: 
