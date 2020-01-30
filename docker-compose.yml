@@ -2,6 +2,7 @@ version: '3'
 services:
     proxy:
         image: proxy:latest
+        volumes: /etc/letsencrypt:/etc/letsencrypt
         ports:
             - "80:80"
             - "443:443"
@@ -14,5 +15,6 @@ services:
     #         - "8443:8443"
     testsocket:
         image: aoe-websockets:latest
+        volumes: /etc/letsencrypt:/etc/letsencrypt
         ports:
             - "8445:8445"
