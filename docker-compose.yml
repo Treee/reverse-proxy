@@ -2,7 +2,6 @@ version: '3'
 services:
     proxy:
         image: proxy:latest
-        container_name: proxy
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
         ports:
@@ -14,7 +13,6 @@ services:
 
     aoetechsocket:
         image: aoe-websockets:latest
-        container_name: aoetechsocket
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
         ports:
@@ -22,7 +20,6 @@ services:
 
     testsocket:
         image: aoe-websockets:latest
-        container_name: testsocket
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
         ports:
