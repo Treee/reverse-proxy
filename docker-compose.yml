@@ -4,9 +4,6 @@ services:
         image: proxy:latest
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
-        expose: 
-            - "8443"
-            - "8445"
         ports:
             - "80:80"
             - "443:443"
