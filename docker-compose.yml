@@ -1,15 +1,12 @@
 version: '3'
 services:
     proxy:
-        image: jwilder/nginx-proxy
+        image: proxy:latest
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
-            - /var/run/docker.sock:/tmp/docker.sock:ro
         ports:
-            - "80:80"
-            - "443:443"
-        environment: 
-            - DEFAULT_HOST=itsatreee.com
+            - 80:80
+            - 443:443
         depends_on:
             - aoetechsocket
             - testsocket
@@ -19,15 +16,11 @@ services:
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
         ports:
-            - "8443:8443"
-        environment: 
-            - VIRTUAL_HOST=aoetechsocket
+            - 8443:8443
 
     testsocket:
         image: aoe-websockets:latest
         volumes: 
             - /etc/letsencrypt:/etc/letsencrypt
         ports:
-            - "8445:8445"
-        environment: 
-            - VIRTUAL_HOST=testsocket
+            - 8445:8445
