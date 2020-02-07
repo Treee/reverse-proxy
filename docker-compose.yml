@@ -1,26 +1,35 @@
 version: '3'
 services:
-    proxy:
-        image: proxy:latest
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        name: nginx-proxy
         volumes: 
-            - /etc/letsencrypt:/etc/letsencrypt
+            - service-certs:/etc/nginx/certs
+            - service-certs:/etc/nginx/vhost.d
+            - service-certs:/use/share/nginx/html
+            - /var/run/docker.sock:/tmp/docker.sock:ro
         ports:
             - 80:80
             - 443:443
-        depends_on:
-            - aoetechsocket
-            - testsocket
+        depends_on: 
+            - nginx-proxy-letsencrypt
 
-    aoetechsocket:
-        image: aoe-websockets:latest
-        volumes: 
-            - /etc/letsencrypt:/etc/letsencrypt
-        ports:
-            - 8443:8443
+    nginx-proxy-letsencrypt:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        name: nginx-proxy-letsencrypt
+        volumes:
+            - service-certs:rw
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment: 
+            - DEFAULT_EMAIL=mail@aoe.itsatreee.com
 
     testsocket:
         image: aoe-websockets:latest
-        volumes: 
-            - /etc/letsencrypt:/etc/letsencrypt
+        name: testsocket
         ports:
-            - 8445:8445
+            - 8445
+        environment:
+            - VIRTUAL_HOST=aoe.itsatreee.com
+            - LETSENCRYPT_HOST=aoe.itsatreee.com
+volumes:
+    service-certs:
