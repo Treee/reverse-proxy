@@ -2,7 +2,6 @@ version: '3'
 services:
     nginx-proxy:
         image: jwilder/nginx-proxy
-        name: nginx-proxy
         volumes: 
             - service-certs:/etc/nginx/certs
             - service-certs:/etc/nginx/vhost.d
@@ -16,7 +15,6 @@ services:
 
     nginx-proxy-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
-        name: nginx-proxy-letsencrypt
         volumes:
             - service-certs:rw
             - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -25,7 +23,6 @@ services:
 
     testsocket:
         image: aoe-websockets:latest
-        name: testsocket
         ports:
             - 8445
         environment:
