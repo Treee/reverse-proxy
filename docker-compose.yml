@@ -10,8 +10,6 @@ services:
         ports:
             - 80:80
             - 443:443
-        depends_on: 
-            - nginx-proxy-letsencrypt
 
     nginx-proxy-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
@@ -30,5 +28,8 @@ services:
         environment:
             - VIRTUAL_HOST=aoe.itsatreee.com
             - LETSENCRYPT_HOST=aoe.itsatreee.com
+        depends_on: 
+            - nginx-proxy
+            - nginx-proxy-letsencrypt
 volumes:
     service-certs:
