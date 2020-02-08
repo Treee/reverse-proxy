@@ -22,7 +22,7 @@ services:
             - DEFAULT_EMAIL=mail@aoe.itsatreee.com
 
     testsocket:
-        image: aoe-websockets:latest
+        image: aoe-websockets
         ports:
             - 8445
         environment:
