@@ -30,7 +30,7 @@ services:
 
     testsocket:
         image: aoe-websockets
-        expose:
+        ports:
             - 8445
         environment:
             - VIRTUAL_HOST=aoe.itsatreee.com
@@ -39,11 +39,12 @@ services:
         depends_on: 
             - nginx-proxy
             - letsencrypt
+        restart: always
 volumes:
     conf:
     vhost:
     html:
-    dhparams:
+    dhparam:
     certs:
 
 networks:
