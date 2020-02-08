@@ -12,7 +12,6 @@ services:
         ports:
             - 80:80
             - 443:443
-        restart: always
 
     letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
@@ -27,7 +26,6 @@ services:
             - DEBUG=true
         depends_on: 
             - nginx-proxy
-        restart: always
 
     testsocket:
         image: aoe-websockets
@@ -40,15 +38,9 @@ services:
         depends_on: 
             - nginx-proxy
             - letsencrypt
-        restart: always
 volumes:
     conf:
     vhost:
     html:
     dhparam:
     certs:
-
-networks:
-    default:
-        external:
-            name: nginx-proxy
