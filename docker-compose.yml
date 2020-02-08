@@ -14,7 +14,7 @@ services:
             - 443:443
 
     letsencrypt:
-        image: jrcs/letsencrypt-nginx-proxy-companion
+        image: jrcs/letsencrypt-nginx-proxy-companion:latest
         volumes:
             - vhost:/etc/nginx/vhost.d
             - html:/usr/share/nginx/html
@@ -27,17 +27,17 @@ services:
         depends_on: 
             - nginx-proxy
 
-    testsocket:
-        image: aoe-websockets
-        ports:
-            - 8445
-        environment:
-            - VIRTUAL_HOST=aoe.itsatreee.com
-            - LETSENCRYPT_HOST=aoe.itsatreee.com
-            - VIRTUAL_PORT=8445
-        depends_on: 
-            - nginx-proxy
-            - letsencrypt
+    # testsocket:
+    #     image: aoe-websockets
+    #     ports:
+    #         - 8445
+    #     environment:
+    #         - VIRTUAL_HOST=aoe.itsatreee.com
+    #         - LETSENCRYPT_HOST=aoe.itsatreee.com
+    #         - VIRTUAL_PORT=8445
+    #     depends_on: 
+    #         - nginx-proxy
+    #         - letsencrypt
 volumes:
     conf:
     vhost:
