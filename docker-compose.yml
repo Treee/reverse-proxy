@@ -3,33 +3,50 @@ services:
     nginx-proxy:
         image: jwilder/nginx-proxy
         volumes: 
-            - service-certs:/etc/nginx/certs
-            - service-certs:/etc/nginx/vhost.d
-            - service-certs:/usr/share/nginx/html
+            - conf:/etc/nginx/conf.d
+            - vhost:/etc/nginx/vhost.d
+            - html:/usr/share/nginx/html
+            - dhparam:/etc/nginx/dhparam
+            - certs:/etc/nginx/certs:ro
             - /var/run/docker.sock:/tmp/docker.sock:ro
         ports:
             - 80:80
             - 443:443
+        restart: always
 
-    nginx-proxy-letsencrypt:
+    letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
-            - service-certs:/etc/nginx/certs
-            - service-certs:/etc/nginx/vhost.d
-            - service-certs:/usr/share/nginx/html
+            - vhost:/etc/nginx/vhost.d
+            - html:/usr/share/nginx/html
+            - dhparam:/etc/nginx/dhparam:ro
+            - certs:/etc/nginx/certs
             - /var/run/docker.sock:/tmp/docker.sock:ro
         environment: 
-            - DEFAULT_EMAIL=mail@aoe.itsatreee.com
+            - NGINX_PROXY_CONTAINER=nginx-proxy
+        depends_on: 
+            - nginx-proxy
+        restart: always
 
     testsocket:
         image: aoe-websockets
-        ports:
+        expose:
             - 8445
         environment:
             - VIRTUAL_HOST=aoe.itsatreee.com
             - LETSENCRYPT_HOST=aoe.itsatreee.com
+            - VIRTUAL_PORT=8445
         depends_on: 
             - nginx-proxy
-            - nginx-proxy-letsencrypt
+            - letsencrypt
 volumes:
-    service-certs:
+    conf:
+    vhost:
+    html:
+    dhparams:
+    certs:
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
