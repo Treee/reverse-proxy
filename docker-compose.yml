@@ -16,7 +16,7 @@ services:
     nginx-proxy-letsencrypt:
         image: jrcs/letsencrypt-nginx-proxy-companion
         volumes:
-            - service-certs:rw
+            - service-certs:/etc
             - /var/run/docker.sock:/tmp/docker.sock:ro
         environment: 
             - DEFAULT_EMAIL=mail@aoe.itsatreee.com
