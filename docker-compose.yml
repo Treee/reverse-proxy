@@ -20,9 +20,25 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   aoe-tech-websockets:
-      image: aoe-tech-websockets:latest
-      container_name: aoe-tech-websockets
-      ports:
-        - "8443:8443"
-      volumes:
-        - /data/certbot/conf:/etc/letsencrypt
+    image: aoe-tech-websockets:latest
+    container_name: aoe-tech-websockets
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+  
+  # treeemotes:
+  #   image: twitch-overlay:tree
+  #   container_name: treeemotes
+  #   ports:
+  #     - "8446:8446"
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  
+  # membtvemotes:
+  #   image: twitch-overlay:membtv
+  #   container_name: membtvemotes
+  #   ports:
+  #     - "8445:8445"
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
