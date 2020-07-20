@@ -27,6 +27,14 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
   
+  # membtvemotes:
+  #   image: twitch-overlay:membtv
+  #   container_name: membtvemotes
+  #   ports:
+  #     - "8445:8445"
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  
   # treeemotes:
   #   image: twitch-overlay:tree
   #   container_name: treeemotes
@@ -35,10 +43,3 @@ services:
   #   volumes:
   #     - ./data/certbot/conf:/etc/letsencrypt
   
-  # membtvemotes:
-  #   image: twitch-overlay:membtv
-  #   container_name: membtvemotes
-  #   ports:
-  #     - "8445:8445"
-  #   volumes:
-  #     - ./data/certbot/conf:/etc/letsencrypt
