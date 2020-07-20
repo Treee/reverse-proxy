@@ -36,4 +36,5 @@ This project holds my nginx proxy to websocket servers and the certbot in charge
     a. You might need to run `chmod +x init-letsencrypt.sh` to grant execute permissions to the script.  
     b. This script satisfies a few things that are needed when obtaining SSL certs from a CA authority using acme responses. It downloads up to date SSL options, creates a dummy cert to bootstrap the nginx server, requests new certified SSL keys, deletes the old temp dummy certs and restarts the nginx server to apply the changes.
 
-4. Run `docker-compose up`
+4. Run `docker-compose up`  
+    a. Add `-d` to allow for detached mode.
