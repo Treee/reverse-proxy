@@ -2,8 +2,7 @@ version: '3'
 
 services:
   nginx:
-    # image: nginx:1.15-alpine
-    image: test-nginx
+    image: nginx
     container_name: nginx
     ports:
       - "80:80"
