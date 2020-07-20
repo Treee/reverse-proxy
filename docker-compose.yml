@@ -30,8 +30,6 @@ services:
   membtvemotes:
     image: twitch-bot:membtv
     container_name: membtvemotes
-    args:
-      - server_port=8445
     ports:
       - "8445:8445"
     volumes:
@@ -40,8 +38,6 @@ services:
   treeemotes:
     image: twitch-bot:itsatreee
     container_name: treeemotes
-    args:
-      - server_port=8446
     ports:
       - "8446:8446"
     volumes:
