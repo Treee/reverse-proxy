@@ -32,7 +32,7 @@ This project holds my nginx proxy to websocket servers and the certbot in charge
 
 2. Build the nginx container - `docker build . -t nginx:my-latest` (You can change the tag name if you change the image source in the docker-compose.yml)
 
-3. Run the command `./init-letsencrypt.sh`  
+3. Run the command `./init-letsencrypt.sh` (This only needs to be run once when setting it all up. Make sure you compy the ssl key folder so you do not have to do this again when redeploying)
     a. You might need to run `chmod +x init-letsencrypt.sh` to grant execute permissions to the script.  
     b. This script satisfies a few things that are needed when obtaining SSL certs from a CA authority using acme responses. It downloads up to date SSL options, creates a dummy cert to bootstrap the nginx server, requests new certified SSL keys, deletes the old temp dummy certs and restarts the nginx server to apply the changes.
 
