@@ -31,9 +31,9 @@ jobs:
       run: |
         docker build . \
           -t $CONTAINER_IMAGE \
-          -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME/$CONTAINER_IMAGE
+          -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME
 
     - name: Push
       if: github.ref == 'refs/heads/master'
       run: |
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME/$CONTAINER_IMAGE
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME
