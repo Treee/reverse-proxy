@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:my-latest
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/reverse-proxy
     container_name: nginx
     ports:
       - "80:80"
@@ -20,7 +20,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   aoe-tech-websockets:
-    image: aoe-tech-websockets:latest
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-tech-websockets
     container_name: aoe-tech-websockets
     ports:
       - "8443:8443"
@@ -28,7 +28,7 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
   
   membtvemotes:
-    image: twitch-bot:membtv
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:membtvemotes
     container_name: membtvemotes
     ports:
       - "8445:8445"
@@ -36,7 +36,7 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
 
   treeemotes:
-    image: twitch-bot:itsatreee
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:treeemotes
     container_name: treeemotes
     ports:
       - "8446:8446"
