@@ -10,6 +10,10 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
   certbot:
@@ -17,6 +21,10 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   aoe-websocket-server:
@@ -24,18 +32,30 @@ services:
     container_name: aoe-websocket-server
     ports:
       - "8443:8443"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
   
   membtvemotes:
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:membtvemotes
     container_name: membtvemotes
     ports:
       - "8445:8445"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
 
   treeemotes:
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:treeemotes
     container_name: treeemotes
     ports:
       - "8446:8446"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
   
   aoe-statistics-db:
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics
@@ -44,3 +64,7 @@ services:
       - "27012:27012"
     volumes: 
       - ./data/db
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
