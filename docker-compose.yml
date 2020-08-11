@@ -82,8 +82,6 @@ services:
         max-file: "2"
 
   aoe-statistics-api:
-    depends_on: 
-      - aoe-statistics-db
     restart: on-failure:10
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics:api
     container_name: aoe-statistics-api
