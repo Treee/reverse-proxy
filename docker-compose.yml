@@ -58,12 +58,22 @@ services:
         max-file: "2"
   
   aoe-statistics-db:
-    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics:db
     container_name: aoe-statistics-db
     ports:
       - "27017:27017"
     volumes: 
       - ./data/db
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "2"
+
+  aoe-statistics-api:
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics:api
+    container_name: aoe-statistics-api
+    ports:
+      - "8447:8447"
     logging:
       options:
         max-size: "10m"
