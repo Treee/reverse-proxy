@@ -24,22 +24,23 @@ services:
     container_name: aoe-websocket-server
     ports:
       - "8443:8443"
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
   
   membtvemotes:
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:membtvemotes
     container_name: membtvemotes
     ports:
       - "8445:8445"
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
 
   treeemotes:
     image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/twitch-bot:treeemotes
     container_name: treeemotes
     ports:
       - "8446:8446"
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
   
+  aoe-statistics-db:
+    image: 887523103012.dkr.ecr.us-west-2.amazonaws.com/aoe-statistics
+    container_name: aoe-statistics-db
+    ports:
+      - "27012:27012"
+    volumes: 
+      - ./data/db
